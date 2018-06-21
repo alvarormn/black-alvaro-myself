@@ -1,9 +1,14 @@
 'use strict'
 
 var desk = [];
+var full;
 
 function createBaraja(desk) {
-  var card = new Object;
+
+  if (full === 1) {
+    console.log('Solo se puede generar una Baraja');
+    return
+  }
   var baraja = {
     type:[
       {
@@ -39,8 +44,11 @@ function createBaraja(desk) {
       desk.push(card);
     }
   }
+  full = 1;
 
   console.log(desk);
+  drawBaraja(desk)
+  //console.log(desk);
 }
 
 function disorder(desk) {
@@ -50,4 +58,12 @@ function disorder(desk) {
   }
   var desk = desk.sort(function() {return Math.random() - 0.5});
   console.log(desk);
+}
+
+function drawBaraja(desk) {
+  for (var i = 0; i < desk.length; i++) {
+
+    $('#carta').append(desk[i].num + ' - ' +desk[i].type + '<br>');
+
+  }
 }
